@@ -276,7 +276,52 @@ console.log(checkUniqueness(arrOne));
 const arrTwo = [1, 4, 6, 2, 3];
 console.log(checkUniqueness(arrTwo));
 
-// 11. Bonus - more functionalities for the CRUD TODO app
+// 11. Shuffle array
+const shuffle = arr => {
+  const shuffledArray = [];
+  let set = new Set();
+  // create unique indices
+  while (set.size !== arr.length) {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    set.add(randomIndex);
+  }
+  // convert set of random indices to an array
+  const randomIndexArray = Array.from(set);
+  for (i of randomIndexArray) {
+    for (element of arr) {
+      element = arr[i];
+      shuffledArray.push(element);
+    }
+  }
+  // create unique shuffled set
+  const finalSet = new Set(shuffledArray);
+  // convert shuffled set to an array and return it
+  return Array.from(finalSet);
+};
+
+console.log(shuffle([1, 2, 3, 4, 5]));
+console.log(shuffle([6, 7, 8]));
+
+// Method two
+const shuffle2 = arr => {
+  const shuffledArray = [];
+  let index; // to generate a random index for of elements of the original array
+  let element; // to assign element of the original array
+  while (shuffledArray.length !== arr.length) {
+    index = Math.floor(Math.random() * arr.length);
+    element = arr[index];
+    // check if element already exist in the newly shuffled Array
+    if (shuffledArray.indexOf(element) === -1) {
+      shuffledArray.push(element);
+    }
+  }
+  return shuffledArray;
+};
+
+console.log(shuffle2([1, 2, 3, 4, 5]));
+console.log(shuffle2([6, 7, 8]));
+
+// 12. Bonus - more functionalities for the CRUD USER app
 const users = [
   {
     name: 'Brook',
